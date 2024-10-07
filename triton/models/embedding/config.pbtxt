@@ -24,3 +24,10 @@ instance_group [
     kind: KIND_CPU
   }
 ]
+
+// Add dynamic batching configuration
+dynamic_batching {
+  preferred_batch_size: [ 4, 8 ]
+  max_queue_delay_microseconds: 100
+}
+
