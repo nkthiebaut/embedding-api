@@ -31,11 +31,3 @@ jobs:
           push: true
           file: fastapi/Dockerfile
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/embedding-api:fastapi-latest,${{ secrets.DOCKERHUB_USERNAME }}/embedding-api:fastapi-${{ github.sha }}
-
-      - name: Build and push Triton Docker image
-        uses: docker/build-push-action@v4
-        with:
-          context: ./triton
-          push: true
-          file: triton/Dockerfile
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/embedding-api:triton-latest,${{ secrets.DOCKERHUB_USERNAME }}/embedding-api:triton-${{ github.sha }}
