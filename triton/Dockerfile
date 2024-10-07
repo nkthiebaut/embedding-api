@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/tritonserver:22.12-py3
+FROM nvcr.io/nvidia/tritonserver:24.06-py3
 
 WORKDIR /models
 
@@ -6,7 +6,8 @@ WORKDIR /models
 COPY models /models
 
 # Install Python backend requirements
-RUN pip install -r ./requirements.txt
+COPY requirements.txt /models/requirements.txt
+RUN pip install -r /models/requirements.txt
 
 # Expose Triton ports
 EXPOSE 8000 8001 8002
