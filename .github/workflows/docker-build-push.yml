@@ -24,9 +24,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push Docker image
+      - name: Build and push FastAPI Docker image
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/embedding-api:latest,${{ secrets.DOCKERHUB_USERNAME }}/embedding-api:${{ github.sha }}
+          file: fastapi/Dockerfile
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/embedding-api:fastapi-latest,${{ secrets.DOCKERHUB_USERNAME }}/embedding-api:fastapi-${{ github.sha }}
+
+      - name: Build and push Triton Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          file: triton/Dockerfile
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/embedding-api:triton-latest,${{ secrets.DOCKERHUB_USERNAME }}/embedding-api:triton-${{ github.sha }}
